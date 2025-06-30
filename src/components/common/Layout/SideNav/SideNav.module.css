@@ -1,0 +1,108 @@
+.sideNav {
+  width: 200px;
+  background-color: #2d3748;
+  color: white;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* transition: width 0.3s ease-in-out; */
+  overflow: hidden;
+}
+
+.collapsed {
+  width: 60px;
+}
+
+.hamburger {
+  font-size: 24px;
+  cursor: pointer;
+  padding: 1rem;
+  background: none;
+  border: none;
+  color: white;
+  display: block;
+  text-align: left;
+}
+
+.hamburger img {
+    display: inline-block;
+    margin-left: 12px;
+}
+
+.menuItems {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menuItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 1rem;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s ease;
+  /* min-height: 48px; */
+}
+
+.parentItem {
+    display: flex;
+    /* align-items: center; */
+}
+
+.icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.label {
+  margin-left: 10px;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+  opacity: 1;
+  width: auto;
+  display: inline-block;
+}
+
+.label.hidden {
+  display: none;
+}
+
+/* 툴팁 스타일 */
+.tooltip {
+  position: absolute;
+  left: 60px;
+  background-color: #2d3748;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-50%);
+  top: 50%;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 999;
+}
+
+.menuItem:hover .tooltip {
+  opacity: 1;
+}
+
+.subMenu {
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.subMenuItem {
+  padding: 0.2rem 1rem;
+  font-size: 14px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.subMenuItem:hover {
+  color: white;
+}

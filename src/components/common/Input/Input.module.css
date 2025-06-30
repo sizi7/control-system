@@ -1,0 +1,49 @@
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.inputLabel {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.customInput {
+  width: 100%;
+  padding: 0.5rem 2rem 0.5rem 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+.customInput:active,
+.customInput:focus {
+  outline: 1px solid blue;
+}
+
+.input-error .customInput {
+  border-color: red;
+}
+
+.clearButton {
+  position: absolute;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #999;
+}
+
+.inputErrorMessage {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
