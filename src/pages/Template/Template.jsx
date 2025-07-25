@@ -137,6 +137,17 @@ const DefaultRadio = () => {
     />
   );
 };
+// useState를 form Data로 한번에 관리할 때
+// const handleSelectChange = (name, value) => {
+//   setForm((prev) => ({ ...prev, [name]: value }));
+//   console.log(`Selected ${name}: ${value}`);
+// };
+// <Radio
+//   name="deviceCategory"
+//   value={form.deviceCategory}
+//   onChange={(value) => handleSelectChange('deviceCategory', value)}
+//   options={deviceCategoryOptions}
+// />;
 
 const DefaultModal = () => {
   const [isOpen, setIsOpen] = useState(false);
