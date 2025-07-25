@@ -7,26 +7,27 @@ export default function Button({
   variant = 'primary',
   size = 'md',
   disabled = false,
-  loading = false,
   onClick,
+  icon,
+  iconOnly = false,
   ...props
 }) {
-  const btnClass = classNames(
-    styles.button,
-    styles[variant],
-    styles[size],
-    disabled || loading ? styles.disabled : ''
-  );
+  const btnClass = classNames(styles.button, styles[variant], styles[size], {
+    [styles.disabled]: disabled,
+    [styles.icon]: icon,
+    [styles[icon]]: icon, // icon 클래스 조건부
+    [styles.iconOnly]: iconOnly, // ✅ 수정된 부분
+  });
 
   return (
     <button
       type={type}
       className={btnClass}
       onClick={onClick}
-      disabled={disabled || loading}
+      disabled={disabled}
       {...props}
     >
-      {loading ? '로딩 중...' : children}
+      {children}
     </button>
   );
 }

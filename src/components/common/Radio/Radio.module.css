@@ -1,11 +1,9 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
 }
 
 .groupLabel {
-  margin-bottom: 0.5rem;
   font-weight: bold;
 }
 
@@ -43,12 +41,12 @@
   background-color: #fff;
 }
 
-.radioInput:checked ~ .customRadio {
+.radioInput:checked~.customRadio {
   border-color: #4a90e2;
   background-color: #4a90e2;
 }
 
-.radioInput:checked ~ .customRadio::after {
+/* .radioInput:checked ~ .customRadio::after {
   content: "";
   position: absolute;
   top: 3px;
@@ -57,7 +55,7 @@
   height: 10px;
   border-radius: 50%;
   background: white;
-}
+} */
 
 .error .customRadio {
   border-color: red;

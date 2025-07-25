@@ -1,7 +1,6 @@
 .inputWrapper {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
 }
 
 .inputLabel {
@@ -17,15 +16,18 @@
 
 .customInput {
   width: 100%;
-  padding: 0.5rem 2rem 0.5rem 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  transition: border-color 0.3s;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid #BBBBBB;
+  border-radius: 1px;
+  color: #002244;
+  font-size: 14px;
 }
+
 .customInput:active,
 .customInput:focus {
-  outline: 1px solid blue;
+  border: 1px solid #0088FF;
+  outline: none;
 }
 
 .input-error .customInput {

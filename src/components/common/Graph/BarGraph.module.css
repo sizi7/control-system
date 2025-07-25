@@ -1,0 +1,44 @@
+.bar-chart {
+    max-width: 100%;
+    height: auto;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    background-color: #f8f9fc;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
+}
+
+.bar {
+    rx: 4;
+    fill: url(#barGradient);
+    transition: all 0.3s ease;
+}
+
+.bar:hover {
+    fill: #367be8;
+}
+
+.axis text {
+    font-size: 12px;
+    fill: #333;
+}
+
+.axis path,
+.axis line {
+    stroke: #ccc;
+}
+
+#tooltip {
+    position: absolute;
+    background: white;
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}

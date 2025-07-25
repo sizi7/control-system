@@ -3,10 +3,14 @@ import Layout from '../components/layout/Layout';
 
 import Login from '../pages/Login/Login';
 import Home from '../pages/Home/Home';
-import About from '../pages/About/About';
+import Patients from '../pages/Patients/Patients';
 import Contact from '../pages/Contact/Contact';
 import NotFound from '../pages/NotFound/NotFound';
 import Template from '../pages/Template/Template';
+import Organization from '../pages/Organization/Organization';
+import OrganizationNew from '@/pages/Organization/OrganizationNew';
+import OrganizationDetail from '@/pages/Organization/OrganizationDetail';
+import OrganizationEdit from '@/pages/Organization/OrganizationEdit';
 
 const AppRoutes = () => {
   return (
@@ -16,23 +20,14 @@ const AppRoutes = () => {
       <Route path="/template" element={<Template />} />
 
       {/* layout이 있는 페이지 */}
-      <Route
-        path="/"
-        element={
-          <Layout
-            headerProps={{ title: 'My Website', rightContent: <button>Logout</button> }}
-            navItems={[
-              { label: 'Home', to: '/' },
-              { label: 'About', to: '/about' },
-              { label: 'Contact', to: '/contact' },
-            ]}
-            footerText="© 2025 MyCompany. All rights reserved."
-          />
-        }
-      >
+      <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="/organization" element={<Organization />} />
+        <Route path="/organization/new" element={<OrganizationNew />} />
+        <Route path="/organization/:id" element={<OrganizationDetail />} />
+        <Route path="/organization/:id/edit" element={<OrganizationEdit />} />
+        <Route path="patients" element={<Patients />} />
       </Route>
 
       {/* 404 */}

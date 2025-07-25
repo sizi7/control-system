@@ -1,0 +1,49 @@
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.item {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+    transition: background-color 0.2s ease;
+}
+
+.item:hover {
+    background-color: #f9f9f9;
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    color: #333;
+}
+
+.description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.meta {
+    font-size: 0.8rem;
+    color: #999;
+    text-align: right;
+}
+
+.empty {
+    padding: 1rem;
+    text-align: center;
+    color: #aaa;
+    font-size: 0.95rem;
+}

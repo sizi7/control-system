@@ -1,0 +1,45 @@
+.buttonBox {
+    display: flex;
+    justify-content: end;
+    margin: 10px 0;
+}
+
+.search table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.search th {
+    text-align: left;
+    vertical-align: middle;
+    padding: 0.5rem 0.75rem;
+    font-weight: 500;
+    color: #333;
+    white-space: nowrap;
+    width: 120px;
+}
+
+.search td {
+    padding: 0.5rem 0.75rem;
+}
+
+.selectbox {
+    width: 200px;
+}
+
+.radiobox {
+    width: fit-content;
+}
+
+.searchbox {
+    display: flex;
+    gap: 10px;
+}
+
+.searchInput {
+    width: 300px;
+}
+
+.tablebox {
+    margin-top: 30px;
+}

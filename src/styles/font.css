@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
 @font-face {
   font-family: 'Pretendard';
   src: url('/fonts/Pretendard-Regular.woff2') format('woff2');
@@ -13,9 +15,6 @@
   font-style: normal;
   font-display: swap;
 }
-
-
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 /* 기본 설정 */
 body {

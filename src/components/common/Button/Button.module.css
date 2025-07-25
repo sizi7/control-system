@@ -1,23 +1,37 @@
 .button {
   font-weight: 500;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
+
   cursor: pointer;
   transition: all 0.2s;
 }
 
 /* 크기 */
+.default {
+  height: 32px;
+  padding: 4px 12px;
+  font-size: 14px;
+}
+
 .sm {
   font-size: 0.75rem;
   padding: 0.4rem 0.8rem;
 }
+
 .md {
-  font-size: 0.9rem;
-  padding: 0.6rem 1rem;
+  /* font-size: 0.9rem;
+  padding: 0.6rem 1rem; */
+
+  height: 32px;
+  padding: 4px 12px;
+  font-size: 14px;
 }
+
 .lg {
-  font-size: 1rem;
-  padding: 0.8rem 1.2rem;
+  height: 40px;
+  font-size: 16px;
+  padding: 8px 16px;
 }
 
 /* 종류 */
@@ -25,6 +39,7 @@
   background-color: #4a90e2;
   color: white;
 }
+
 .primary:hover {
   background-color: #3b7bcc;
 }
@@ -33,6 +48,7 @@
   background-color: #e0e0e0;
   color: #333;
 }
+
 .secondary:hover {
   background-color: #c7c7c7;
 }
@@ -41,6 +57,7 @@
   background-color: #f44336;
   color: white;
 }
+
 .danger:hover {
   background-color: #d32f2f;
 }
@@ -50,13 +67,111 @@
   color: #4a90e2;
   border: 1px solid #4a90e2;
 }
+
 .ghost:hover {
   background-color: rgba(74, 144, 226, 0.05);
+}
+
+
+.blue {
+  background-color: #FFFFFF;
+  border: 1px solid #004488;
+  color: #004488;
+}
+
+.blue:hover {
+  background-color: #F0F4FF;
+}
+
+/* .blue:active {
+  background-color: #0088FF;
+  border-color: #0088FF;
+  color: #FFFFFF;
+} */
+
+.red {
+  background-color: #FFFFFF;
+  border: 1px solid #DD1111;
+  color: #DD1111;
+}
+
+.red:hover {
+  background-color: #FFF8F8;
+}
+
+.red-fill {
+  background-color: #DD1111;
+  color: #FFFFFF;
+}
+
+/* .red:active {
+  background-color: #DD1111;
+  color: #FFFFFF;
+} */
+
+.icon {
+  background-repeat: no-repeat;
+  background-size: 16px;
+}
+
+.icon:disabled {
+  pointer-events: none;
+}
+
+.icon.md {
+  background-position: center left 8px;
+  padding: 0 8px 0 32px;
+}
+
+.icon.lg {
+  background-position: center left 16px;
+  padding: 0 16px 0 40px;
+}
+
+.confirm {
+  background-image: url('/public/imgs/btn-outline-blue-confirm.svg');
+}
+
+/* .confirm:active {
+  background-image: url('/public/imgs/btn-active-blue-confirm.svg');
+} */
+
+.delete {
+  background-image: url('/public/imgs/btn-outline-red-delete.svg');
+}
+
+.cancle {
+  background-image: url('/public/imgs/btn-red-cancle.svg');
+
+}
+
+.finish {
+  background-image: url('/public/imgs/btn-red-finish.svg');
+}
+
+/* .delete:active {
+  background-image: url('/public/imgs/btn-active-red-delete.svg');
+} */
+
+.iconOnly {
+  width: 32px;
+  height: 32px;
+  padding: 8px !important;
 }
 
 /* 비활성화 */
 .disabled,
 :disabled {
   cursor: not-allowed;
-  opacity: 0.6;
+  /* opacity: 0.6; */
+  background-color: #BBBBBB;
+  border: none
+}
+
+.confirm:disabled {
+  background-image: url('/public/imgs/btn-disabled-confirm.svg');
+}
+
+.delete:disabled {
+  background-image: url('/public/imgs/btn-disabled-delete.svg');
 }

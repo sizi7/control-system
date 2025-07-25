@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import styles from './SideNav.module.css';
-import { GoGraph } from 'react-icons/go';
 import { RxHamburgerMenu } from 'react-icons/rx';
-import { MdErrorOutline, MdHome, MdPeople, MdSettings } from 'react-icons/md';
+import { MdHome, MdPeople, MdSettings } from 'react-icons/md';
+import { FaHospitalAlt } from 'react-icons/fa';
 
 function SideNav({ isOpen, toggle }) {
   const [isHovering, setIsHovering] = useState(false);
@@ -15,20 +15,27 @@ function SideNav({ isOpen, toggle }) {
 
   const menu = [
     { icon: <MdHome />, label: 'Dashboard', path: '/' },
+    { icon: <FaHospitalAlt />, label: '기관', path: '/hospital' },
     {
-      icon: <MdPeople />, label: 'Patients', children: [
+      icon: <MdPeople />,
+      label: 'Patients',
+      children: [
         { label: 'Patient List', path: '/patients' },
-        { label: 'Admission History', path: '/admissions' }
-      ]
+        { label: 'Admission History', path: '/admissions' },
+      ],
     },
     {
-      icon: <MdSettings />, label: 'Settings', children: [
+      icon: <MdSettings />,
+      label: 'Settings',
+      children: [
         { label: 'Profile', path: '/profile' },
-        { label: 'Notifications', path: '/notifications' }
-      ]
-    }
+        { label: 'Notifications', path: '/notifications' },
+      ],
+    },
   ];
-  
+
+  console.log('menu', menu);
+
   const toggleExpand = (index) => {
     setExpandedIndexes((prev) => {
       let next;
@@ -53,7 +60,6 @@ function SideNav({ isOpen, toggle }) {
     }
   }, [navOpen]);
 
-
   return (
     <div
       className={`${styles.sideNav} ${!navOpen ? styles.collapsed : ''}`}
@@ -67,12 +73,11 @@ function SideNav({ isOpen, toggle }) {
       <ul className={styles.menuItems}>
         {menu.map((item, i) => (
           <li key={i} className={styles.menuItem}>
-            <div
-              className={styles.parentItem}
-              onClick={() => toggleExpand(i)}
-            >
+            <div className={styles.parentItem} onClick={() => toggleExpand(i)}>
               <span className={styles.icon}>{item.icon}</span>
-              <span className={`${styles.label} ${!navOpen ? styles.hidden : ''}`}>
+              <span
+                className={`${styles.label} ${!navOpen ? styles.hidden : ''}`}
+              >
                 {item.label}
               </span>
             </div>
@@ -87,10 +92,8 @@ function SideNav({ isOpen, toggle }) {
                 ))}
               </ul>
             )}
-
           </li>
         ))}
-
       </ul>
     </div>
   );
