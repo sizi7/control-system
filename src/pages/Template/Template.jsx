@@ -561,7 +561,9 @@ const Template = () => {
 
       <div>
         <h2>엑셀 다운로드</h2>
-        <DefaultExcelDownload />
+        <div>
+          <DefaultExcelDownload />
+        </div>
       </div>
     </div>
   );
