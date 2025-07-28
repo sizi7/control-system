@@ -11,6 +11,8 @@ import Organization from '../pages/Organization/Organization';
 import OrganizationNew from '@/pages/Organization/OrganizationNew';
 import OrganizationDetail from '@/pages/Organization/OrganizationDetail';
 import OrganizationEdit from '@/pages/Organization/OrganizationEdit';
+import ContractNew from '@/pages/Organization/ContractNew';
+import UsageStats from '@/components/layout/UsageStats/UsageStats';
 
 const AppRoutes = () => {
   return (
@@ -23,10 +25,18 @@ const AppRoutes = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="contact" element={<Contact />} />
+
         <Route path="/organization" element={<Organization />} />
         <Route path="/organization/new" element={<OrganizationNew />} />
         <Route path="/organization/:id" element={<OrganizationDetail />} />
         <Route path="/organization/:id/edit" element={<OrganizationEdit />} />
+        <Route
+          path="/organization/:id/contract/new"
+          element={<ContractNew />}
+        />
+
+        <Route path="/usagestats" element={<UsageStats />} />
+
         <Route path="patients" element={<Patients />} />
       </Route>
 

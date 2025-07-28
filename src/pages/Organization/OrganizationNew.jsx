@@ -8,7 +8,7 @@ const OrganizationNew = () => {
     <section>
       <div className="pageHeader">
         <PageTitle title="기관 등록" />
-        <Breadcrumbs />
+        <Breadcrumbs name="기관 등록" />
       </div>
       <div>
         <OrganizationForm mode="create" />

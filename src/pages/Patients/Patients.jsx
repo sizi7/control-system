@@ -6,7 +6,7 @@ const About = () => {
     <section>
       <div className="pageHeader">
         <PageTitle title="병원" />
-        <Breadcrumbs />
+        <Breadcrumbs name="병원" />
       </div>
     </section>
   );

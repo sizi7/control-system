@@ -20,6 +20,7 @@ import DateRangePicker from '@/components/common/DatePicker/DateRangePicker';
 import SingleDateRangePicker from '@/components/common/DatePicker/SingleDateRangePicker';
 import MonthRangePickerSingle from '@/components/common/DatePicker/MonthRangePickerSingle';
 import YearRangePickerSingle from '@/components/common/DatePicker/YearPicker';
+import ExcelDownloadButton from '@/components/common/ExcelDownloadButton/ExcelDownloadButton';
 
 const DefaultInput = () => {
   const [text, setText] = useState('');
@@ -55,7 +56,6 @@ const DefaultTextarea = () => {
 
   return (
     <Textarea
-      label="메모"
       value={text}
       onChange={(e) => setText(e.target.value)}
       placeholder="내용을 입력해주세요"
@@ -161,21 +161,61 @@ const DefaultModal = () => {
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>모달 열기</button>
+      <Button onClick={() => setIsOpen(true)}>모달 열기</Button>
 
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <h2>모달 제목</h2>
         <p>이건 모달 내용입니다.</p>
-        <button onClick={() => setIsOpen(false)}>닫기</button>
+        <div className="buttonGroup">
+          <Button variant="primary" onClick={() => setIsOpen(false)}>
+            닫기
+          </Button>
+        </div>
+      </Modal>
+    </>
+  );
+};
+
+const DefaultConfirmModal = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleConfirm = () => {
+    // 확인 시 동작
+    alert('확인 클릭됨');
+    setIsOpen(false);
+  };
+
+  const handleCancel = () => {
+    // 취소 시 동작
+    setIsOpen(false);
+  };
+
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>확인 모달 열기</Button>
+
+      <Modal isOpen={isOpen} onClose={handleCancel}>
+        <h2>정말 삭제하시겠습니까?</h2>
+        <p>이 작업은 되돌릴 수 없습니다.</p>
+
+        <div className="buttonGroup">
+          <Button variant="red" onClick={handleCancel}>
+            취소
+          </Button>
+          <Button variant="blue" onClick={handleConfirm}>
+            확인
+          </Button>
+        </div>
       </Modal>
     </>
   );
 };
 
 const DefaultDatePicker = () => {
+  const [date, setDate] = useState(null);
   return (
     <>
-      <DatePicker />
+      <DatePicker value={date} onChange={setDate} />
     </>
   );
 };
@@ -188,10 +228,19 @@ const DefaultDateRangePicker = () => {
 };
 
 const DefaultSingleDateRangePicker = () => {
+  const formatRange = ([start, end]) => {
+    const format = (date) =>
+      date
+        ? `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+        : '';
+    return start && end ? `${format(start)} ~ ${format(end)}` : '';
+  };
+  const [range, setRange] = useState([null, null]);
+  console.log('Selected range:', formatRange(range));
   return (
     <div>
       <h3>날짜 범위 선택 (한 번에)</h3>
-      <SingleDateRangePicker />
+      <SingleDateRangePicker value={range} onChange={setRange} />
     </div>
   );
 };
@@ -329,6 +378,40 @@ const DefaultBarGraph = () => {
   );
 };
 
+const DefaultExcelDownload = () => {
+  const fileName = '기관 정보';
+  const sheetName = '기관 정보';
+  const data = [
+    {
+      organizationName: '한림대학교 춘천성심병원',
+      organizationCode: 'HUMC_CC',
+      measurementPeriod: '15일',
+      deviceManagement: 'SEERS',
+      deIdentification: '가운데',
+      his: 'O',
+    },
+  ];
+
+  const headers = [
+    { key: 'No', label: 'No' },
+    { key: 'organizationName', label: '기관명' },
+    { key: 'organizationCode', label: '기관 코드' },
+    { key: 'measurementPeriod', label: '측정 기간' },
+    { key: 'deviceManagement', label: '장치 관리' },
+    { key: 'deIdentification', label: '비식별화' },
+    { key: 'his', label: 'HIS 연동 여부' },
+  ];
+
+  return (
+    <ExcelDownloadButton
+      data={data}
+      headers={headers}
+      fileName={fileName}
+      sheetName={sheetName}
+    />
+  );
+};
+
 const Template = () => {
   return (
     <div className={styles.template}>
@@ -377,6 +460,9 @@ const Template = () => {
         <h2>Modal</h2>
         <div>
           <DefaultModal />
+        </div>
+        <div>
+          <DefaultConfirmModal />
         </div>
       </div>
 
@@ -472,6 +558,11 @@ const Template = () => {
         <h2>BarGraph</h2>
         <DefaultBarGraph />
       </div>
+
+      <div>
+        <h2>엑셀 다운로드</h2>
+        <DefaultExcelDownload />
+      </div>
     </div>
   );
 };
@@ -483,15 +574,19 @@ function DemoComponent() {
   const { showToast } = useToast();
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <button onClick={() => showToast({ type: 'success', message: '성공!' })}>
+    <div style={{ display: 'flex', gap: '8px', padding: '2rem' }}>
+      <Button
+        variant="blue"
+        onClick={() => showToast({ type: 'success', message: '성공!' })}
+      >
         성공 토스트
-      </button>
-      <button
+      </Button>
+      <Button
+        variant="red"
         onClick={() => showToast({ type: 'error', message: '에러 발생!' })}
       >
         에러 토스트
-      </button>
+      </Button>
     </div>
   );
 }

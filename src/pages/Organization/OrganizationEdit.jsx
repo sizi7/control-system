@@ -8,7 +8,7 @@ const OrganizationEdit = () => {
     <section>
       <div className="pageHeader">
         <PageTitle title="기관 수정" />
-        <Breadcrumbs />
+        <Breadcrumbs name="기관 수정" />
       </div>
       <div>
         <OrganizationForm mode="edit" />

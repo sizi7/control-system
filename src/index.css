@@ -113,6 +113,14 @@ h2 {
     align-items: center;
 }
 
+/* Modal */
+.buttonGroup {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
 /* datepicker css */
 .react-datepicker__header {
     background-color: #e8f0ff;
@@ -160,7 +168,9 @@ h2 {
 }
 
 .react-datepicker__close-icon::after {
-    background-color: #4a90e2 !important;
+    background: none !important;
+    color: #999 !important;
+    font-size: 1.2rem !important;
 }
 
 .react-datepicker__year .react-datepicker__year-text {

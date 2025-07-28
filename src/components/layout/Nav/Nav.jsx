@@ -3,6 +3,7 @@ import styles from './Nav.module.css';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { MdHome, MdPeople, MdSettings } from 'react-icons/md';
 import { FaHospital } from 'react-icons/fa';
+import { BsArrowUpRight } from 'react-icons/bs';
 import classNames from 'classnames';
 import { NavLink, useLocation } from 'react-router-dom';
 import logoWhite from '/src/assets/logo-white.svg';
@@ -20,6 +21,7 @@ function SideNav({ isOpen, toggle }) {
   const menu = [
     { icon: <MdHome />, label: 'Dashboard', path: '/' },
     { icon: <FaHospital />, label: '기관', path: '/organization' },
+    { icon: <BsArrowUpRight />, label: '사용량 통계', path: '/usageStats' },
     {
       icon: <MdPeople />,
       label: 'Patients',

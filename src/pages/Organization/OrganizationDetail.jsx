@@ -7,7 +7,7 @@ const OrganizationDetail = () => {
     <section>
       <div className="pageHeader">
         <PageTitle title="기관 상세" />
-        <Breadcrumbs />
+        <Breadcrumbs name="기관 상세" />
       </div>
     </section>
   );

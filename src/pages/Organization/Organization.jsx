@@ -9,11 +9,16 @@ import { useState } from 'react';
 import Radio from '@/components/common/Radio/Radio';
 import Input from '@/components/common/Input/Input';
 import Table from '@/components/common/Table/Table';
+import ExcelDownloadButtonCustom from '@/components/common/ExcelDownloadButton/ExcelDownloadButtonCustom';
 
 const Hospital = () => {
   const navigate = useNavigate();
-  const onClick = () => {
+  const goToOrganizationNew = () => {
     navigate('/organization/new');
+  };
+  const goToContractNew = (id) => {
+    console.log(id);
+    navigate(`/organization/:${id}/contract/new`);
   };
 
   const [selectedStatus, setSelectedStatus] = useState('전체');
@@ -119,12 +124,16 @@ const Hospital = () => {
     <section>
       <div className="pageHeader">
         <PageTitle title="기관" />
-        <Breadcrumbs />
+        <Breadcrumbs name="기관" />
       </div>
       <div className={styles.buttonBox}>
-        <Button variant="blue" onClick={onClick}>
+        <Button variant="blue" onClick={goToOrganizationNew}>
           기관 등록
         </Button>
+        <Button variant="blue" onClick={() => goToContractNew(1)}>
+          계약 등록
+        </Button>
+        <ExcelDownloadButtonCustom data={posts} fileName="기관목록.xlsx" />
       </div>
       <div className={styles.search}>
         <table>
@@ -163,7 +172,10 @@ const Hospital = () => {
                       placeholder="검색어를 입력하세요"
                     />
                   </div>
-                  <Button variant="blue" onClick={onClick}>
+                  <Button
+                    variant="blue"
+                    // onClick={onClick}
+                  >
                     검색
                   </Button>
                 </div>

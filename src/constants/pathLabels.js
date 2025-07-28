@@ -15,7 +15,7 @@ const PATH_LABELS = {
   patients: '환자관리',
   'patients/new': '신규 등록',
   'patients/records': '재원 환자',
-
+  usageStats: '사용량 통계',
   account: '계정설정',
   ward: '병동설정',
   alarm: '알람설정',
