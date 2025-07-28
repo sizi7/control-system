@@ -5,6 +5,7 @@ import { MdHome, MdPeople, MdSettings } from 'react-icons/md';
 import { FaHospital } from 'react-icons/fa';
 import classNames from 'classnames';
 import { NavLink, useLocation } from 'react-router-dom';
+import logoWhite from '/src/assets/logo-white.svg';
 
 function SideNav({ isOpen, toggle }) {
   const location = useLocation();
@@ -79,7 +80,7 @@ function SideNav({ isOpen, toggle }) {
     >
       <button className={styles.hamburger} onClick={toggle}>
         <RxHamburgerMenu />
-        {navOpen && <img src="/imgs/logo-white.svg" alt="thynC logo" />}
+        {navOpen && <img src={logoWhite} alt="thynC logo" />}
       </button>
       <ul className={styles.menuItems}>
         {menu.map((item, i) => (
