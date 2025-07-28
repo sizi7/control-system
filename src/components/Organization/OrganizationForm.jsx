@@ -11,6 +11,7 @@ export default function OrganizationForm({ mode = 'create', initialData }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     // post or put depending on mode
+    console.log('Form submitted:', form);
   };
 
   const [form, setForm] = useState({

@@ -13,6 +13,13 @@ import Table from '../../components/common/Table/Table';
 import PostListPage from '../../components/common/Table/PostListPage';
 import BarChart from '../../components/common/Graph/BarGraph';
 import Textarea from '@/components/common/Textarea/Textarea';
+import MonthPicker from '@/components/common/DatePicker/MonthPicker';
+import MonthRangePicker from '@/components/common/DatePicker/MonthRangePicker';
+import DatePicker from '@/components/common/DatePicker/DatePicker';
+import DateRangePicker from '@/components/common/DatePicker/DateRangePicker';
+import SingleDateRangePicker from '@/components/common/DatePicker/SingleDateRangePicker';
+import MonthRangePickerSingle from '@/components/common/DatePicker/MonthRangePickerSingle';
+import YearRangePickerSingle from '@/components/common/DatePicker/YearPicker';
 // import DatePicker from 'react-datepicker';
 
 const DefaultInput = () => {
@@ -25,7 +32,8 @@ const DefaultInput = () => {
 
   return (
     <Input
-      label="이름"
+      // label="이름"
+      name="inputName"
       value={text}
       onChange={handleInputChange}
       placeholder="이름을 입력하세요"
@@ -165,30 +173,94 @@ const DefaultModal = () => {
   );
 };
 
-// const DefaultDatePicker = () => {
-//   const [selectedDate, setSelectedDate] = useState(value || null);
+const DefaultDatePicker = () => {
+  return (
+    <>
+      <DatePicker />
+    </>
+  );
+};
+const DefaultDateRangePicker = () => {
+  return (
+    <>
+      <DateRangePicker />
+    </>
+  );
+};
 
-//   const handleChange = (date) => {
-//     setSelectedDate(date);
-//     onChange?.(date);
-//   };
+const DefaultSingleDateRangePicker = () => {
+  return (
+    <div>
+      <h3>날짜 범위 선택 (한 번에)</h3>
+      <SingleDateRangePicker />
+    </div>
+  );
+};
 
-//   return (
-//     <>
-//       <DatePicker
-//         selected={selectedDate}
-//         onChange={handleChange}
-//         dateFormat="yyyy-MM-dd"
-//         placeholderText="날짜를 선택하세요"
-//         maxDate={new Date()}
-//         showYearDropdown
-//         showMonthDropdown
-//         dropdownMode="select"
-//         className={styles.input} // ✅ 커스텀 스타일 적용
-//       />
-//     </>
-//   );
-// };
+const DefaultMonthPicker = () => {
+  const [selectMonth, setSelectMonth] = useState(new Date());
+
+  const formatMonth = (date) => {
+    if (!date) return '';
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    return `${year}-${month}`;
+  };
+
+  const handleChange = (date) => {
+    setSelectMonth(date);
+    console.log('선택된 월:', formatMonth(date));
+  };
+  return (
+    <MonthPicker
+      selected={selectMonth}
+      onChange={handleChange}
+      dateFormat="yyyy-MM"
+      showMonthYearPicker
+    />
+  );
+};
+
+const DefaultMonthRangePicker = () => {
+  const [range, setRange] = useState({ start: null, end: null });
+
+  const formatMonth = (date) => {
+    if (!date) return '';
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    return `${year}-${month}`;
+  };
+
+  const handleChange = (range) => {
+    setRange(range);
+
+    const formatted =
+      range.start && range.end
+        ? `${formatMonth(range.start)} ~ ${formatMonth(range.end)}`
+        : '';
+    console.log('선택된 범위:', formatted);
+  };
+
+  const formattedRange =
+    range.start && range.end
+      ? `${formatMonth(range.start)} ~ ${formatMonth(range.end)}`
+      : '';
+
+  return (
+    <div>
+      <h3>월 범위 선택</h3>
+      <MonthRangePicker value={range} onChange={handleChange} />
+      {formattedRange && <p>선택된 범위: {formattedRange}</p>}
+    </div>
+  );
+};
+
+const DefaultMonthRangePickerSingle = () => {
+  return <MonthRangePickerSingle />;
+};
+const DefaultYearRangePickerSingle = () => {
+  return <YearRangePickerSingle />;
+};
 
 const DefaultList = () => {
   const items = [
@@ -352,10 +424,35 @@ const Template = () => {
         </div>
       </div>
 
-      {/* <div>
+      <div>
         <h2>DatePicker</h2>
         <DefaultDatePicker />
-      </div> */}
+      </div>
+      <div>
+        <h2>DateRangePicker</h2>
+        <DefaultDateRangePicker />
+      </div>
+      <div>
+        <h2>SingleDateRangePicker</h2>
+        <DefaultSingleDateRangePicker />
+      </div>
+
+      <div>
+        <h2>MonthPicker</h2>
+        <DefaultMonthPicker />
+      </div>
+      <div>
+        <h2>MonthRangePicker</h2>
+        <DefaultMonthRangePicker />
+      </div>
+      <div>
+        <h2>SingleMonthRangePicker</h2>
+        <DefaultMonthRangePickerSingle />
+      </div>
+      <div>
+        <h2>YearRangePickerSingle</h2>
+        <DefaultYearRangePickerSingle />
+      </div>
 
       <div>
         <h2>List</h2>

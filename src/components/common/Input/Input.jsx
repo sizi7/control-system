@@ -24,7 +24,9 @@ export default function Input({
           <button
             type="button"
             className={styles.clearButton}
-            onClick={() => onChange({ target: { value: '' } })}
+            onClick={() =>
+              onChange({ target: { name: props.name, value: '' } })
+            }
           >
             ×
           </button>
