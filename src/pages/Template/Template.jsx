@@ -20,7 +20,6 @@ import DateRangePicker from '@/components/common/DatePicker/DateRangePicker';
 import SingleDateRangePicker from '@/components/common/DatePicker/SingleDateRangePicker';
 import MonthRangePickerSingle from '@/components/common/DatePicker/MonthRangePickerSingle';
 import YearRangePickerSingle from '@/components/common/DatePicker/YearPicker';
-// import DatePicker from 'react-datepicker';
 
 const DefaultInput = () => {
   const [text, setText] = useState('');
@@ -376,50 +375,54 @@ const Template = () => {
 
       <div>
         <h2>Modal</h2>
-        <DefaultModal />
+        <div>
+          <DefaultModal />
+        </div>
       </div>
 
       <div>
         <h2>Button</h2>
-        <Button>기본 버튼</Button>
-        <Button variant="primary">Primary</Button>
-        <Button variant="secondary">Secondary</Button>
-        <Button variant="danger">Danger</Button>
-        <Button variant="ghost">Ghost</Button>
-        <Button size="sm">작은 버튼</Button>
-        <Button size="lg">큰 버튼</Button>
-        <Button disabled>비활성화</Button>
-        <div
-          style={{
-            display: 'flex',
-            gap: '8px',
-            flexWrap: 'wrap',
-            marginTop: '30px',
-          }}
-        >
-          <Button variant="blue">아이콘</Button>
-          <Button variant="red">delete</Button>
-          <Button variant="blue" icon="confirm">
-            아이콘
-          </Button>
-          <Button variant="red" icon="delete">
-            delete
-          </Button>
-          <Button variant="blue" icon="confirm" iconOnly></Button>
-          <Button variant="red" icon="delete" iconOnly></Button>
-          <Button variant="blue" icon="confirm" iconOnly disabled></Button>
-          <Button variant="red" icon="delete" iconOnly disabled></Button>
+        <div>
+          <Button>기본 버튼</Button>
+          <Button variant="primary">Primary</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="danger">Danger</Button>
+          <Button variant="ghost">Ghost</Button>
+          <Button size="sm">작은 버튼</Button>
+          <Button size="lg">큰 버튼</Button>
+          <Button disabled>비활성화</Button>
+          <div
+            style={{
+              display: 'flex',
+              gap: '8px',
+              flexWrap: 'wrap',
+              marginTop: '30px',
+            }}
+          >
+            <Button variant="blue">아이콘</Button>
+            <Button variant="red">delete</Button>
+            <Button variant="blue" icon="confirm">
+              아이콘
+            </Button>
+            <Button variant="red" icon="delete">
+              delete
+            </Button>
+            <Button variant="blue" icon="confirm" iconOnly></Button>
+            <Button variant="red" icon="delete" iconOnly></Button>
+            <Button variant="blue" icon="confirm" iconOnly disabled></Button>
+            <Button variant="red" icon="delete" iconOnly disabled></Button>
 
-          <div>
-            <Button variant="red" size="lg" icon="cancle">
-              취소
-            </Button>
-            <Button variant="red-fill" size="lg" icon="finish">
-              측정종료
-            </Button>
-            <Button variant="blue" size="lg" icon="confirm">
-              등록 완료
-            </Button>
+            <div>
+              <Button variant="red" size="lg" icon="cancle">
+                취소
+              </Button>
+              <Button variant="red-fill" size="lg" icon="finish">
+                측정종료
+              </Button>
+              <Button variant="blue" size="lg" icon="confirm">
+                등록 완료
+              </Button>
+            </div>
           </div>
         </div>
       </div>
