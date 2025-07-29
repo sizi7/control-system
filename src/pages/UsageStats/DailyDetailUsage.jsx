@@ -5,6 +5,7 @@ import PageTitle from '@/components/layout/PageTitle/PageTitle';
 import Breadcrumbs from '@/components/common/Layout/Breadcrumbs/Breadcrumbs';
 import Button from '@/components/common/Button/Button';
 import Input from '@/components/common/Input/Input';
+import ExcelDownloadButton from '@/components/common/ExcelDownloadButton/ExcelDownloadButton';
 
 const columns = [
   // { key: 'id', label: '번호' },
@@ -42,226 +43,6 @@ const MOCK_DATA = [
     ecgSerial: 'A090912',
     spo2Serial: 'P090912',
   },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0001',
-    patientName: '김환자',
-    ward: '1404',
-    room: '01',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090911',
-    spo2Serial: 'P090911',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0002',
-    patientName: '이환자',
-    ward: '1404',
-    room: '02',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090912',
-    spo2Serial: 'P090912',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0001',
-    patientName: '김환자',
-    ward: '1404',
-    room: '01',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090911',
-    spo2Serial: 'P090911',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0002',
-    patientName: '이환자',
-    ward: '1404',
-    room: '02',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090912',
-    spo2Serial: 'P090912',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0001',
-    patientName: '김환자',
-    ward: '1404',
-    room: '01',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090911',
-    spo2Serial: 'P090911',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0002',
-    patientName: '이환자',
-    ward: '1404',
-    room: '02',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090912',
-    spo2Serial: 'P090912',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0001',
-    patientName: '김환자',
-    ward: '1404',
-    room: '01',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090911',
-    spo2Serial: 'P090911',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0002',
-    patientName: '이환자',
-    ward: '1404',
-    room: '02',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090912',
-    spo2Serial: 'P090912',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0001',
-    patientName: '김환자',
-    ward: '1404',
-    room: '01',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090911',
-    spo2Serial: 'P090911',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0002',
-    patientName: '이환자',
-    ward: '1404',
-    room: '02',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090912',
-    spo2Serial: 'P090912',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0001',
-    patientName: '김환자',
-    ward: '1404',
-    room: '01',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090911',
-    spo2Serial: 'P090911',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0002',
-    patientName: '이환자',
-    ward: '1404',
-    room: '02',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090912',
-    spo2Serial: 'P090912',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0001',
-    patientName: '김환자',
-    ward: '1404',
-    room: '01',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090911',
-    spo2Serial: 'P090911',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0002',
-    patientName: '이환자',
-    ward: '1404',
-    room: '02',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090912',
-    spo2Serial: 'P090912',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0001',
-    patientName: '김환자',
-    ward: '1404',
-    room: '01',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090911',
-    spo2Serial: 'P090911',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0002',
-    patientName: '이환자',
-    ward: '1404',
-    room: '02',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090912',
-    spo2Serial: 'P090912',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0001',
-    patientName: '김환자',
-    ward: '1404',
-    room: '01',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090911',
-    spo2Serial: 'P090911',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0002',
-    patientName: '이환자',
-    ward: '1404',
-    room: '02',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090912',
-    spo2Serial: 'P090912',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0001',
-    patientName: '김환자',
-    ward: '1404',
-    room: '01',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090911',
-    spo2Serial: 'P090911',
-  },
-  {
-    date: '2025-06-01',
-    patientCode: 'A0002',
-    patientName: '이환자',
-    ward: '1404',
-    room: '02',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090912',
-    spo2Serial: 'P090912',
-  },
 ];
 
 const DailyDetailUsage = () => {
@@ -272,6 +53,7 @@ const DailyDetailUsage = () => {
   console.log('day', day);
   const [posts, setPosts] = useState([]);
   const [total, setTotal] = useState(0);
+  const [filteredData, setFilteredData] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const page = Number(searchParams.get('page') || 1);
@@ -282,8 +64,9 @@ const DailyDetailUsage = () => {
     // API 미연결 상태: 목데이터 사용
     const filtered = MOCK_DATA.filter(
       (item) =>
-        item.patientName.includes(keyword) || item.author.includes(keyword)
+        item.patientName.includes(keyword) || item.patientCode.includes(keyword)
     );
+    setFilteredData(filtered);
     setPosts(filtered.slice((page - 1) * limit, page * limit));
     setTotal(filtered.length);
 
@@ -304,7 +87,7 @@ const DailyDetailUsage = () => {
   };
 
   const handleBack = () => {
-    navigate(-1); // ✅ 브라우저 히스토리에서 한 단계 뒤로
+    navigate(-1);
   };
 
   return (
@@ -339,14 +122,22 @@ const DailyDetailUsage = () => {
           </div>
         </div>
       </form>
-
-      <Table
-        columns={columns}
-        data={posts}
-        totalItems={total}
-        rowsPerPage={limit}
-        currentPage={page}
-        onPageChange={(p) => setSearchParams({ page: p, keyword })}
+      {keyword && filteredData.length === 0 ? (
+        <p>검색 결과가 없습니다.</p>
+      ) : (
+        <Table
+          columns={columns}
+          data={posts}
+          totalItems={total}
+          rowsPerPage={limit}
+          currentPage={page}
+          onPageChange={(p) => setSearchParams({ page: p, keyword })}
+        />
+      )}
+      <ExcelDownloadButton
+        data={MOCK_DATA}
+        headers={columns}
+        fileName="기관목록.xlsx"
       />
     </section>
   );

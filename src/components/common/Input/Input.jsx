@@ -19,6 +19,7 @@ export default function Input({
           onChange={onChange}
           placeholder={placeholder}
           {...props}
+          autoComplete="off"
         />
         {value && (
           <button

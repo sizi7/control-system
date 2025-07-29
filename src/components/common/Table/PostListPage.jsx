@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import Table from './Table';
+import Input from '../Input/Input';
+import Button from '../Button/Button';
 
 const columns = [
   { key: 'id', label: '번호' },
@@ -57,6 +59,7 @@ const MOCK_DATA = [
 export default function PostListPage() {
   const [posts, setPosts] = useState([]);
   const [total, setTotal] = useState(0);
+  const [filteredData, setFilteredData] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -69,6 +72,7 @@ export default function PostListPage() {
     const filtered = MOCK_DATA.filter(
       (item) => item.title.includes(keyword) || item.author.includes(keyword)
     );
+    setFilteredData(filtered);
     setPosts(filtered.slice((page - 1) * limit, page * limit));
     setTotal(filtered.length);
 
@@ -93,23 +97,31 @@ export default function PostListPage() {
       <h1>게시글 목록</h1>
 
       <form onSubmit={handleSearch} style={{ marginBottom: '1rem' }}>
-        <input
-          name="keyword"
-          placeholder="검색어를 입력하세요"
-          defaultValue={keyword}
-        />
-        <button type="submit">검색</button>
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <div style={{ width: '300px' }}>
+            <Input
+              name="keyword"
+              placeholder="검색어를 입력하세요"
+              defaultValue={keyword}
+            />
+          </div>
+          <Button type="submit">검색</Button>
+        </div>
       </form>
 
-      <Table
-        columns={columns}
-        data={posts}
-        totalItems={total}
-        rowsPerPage={limit}
-        currentPage={page}
-        onPageChange={(p) => setSearchParams({ page: p, keyword })}
-        onRowClick={(row) => navigate(`/posts/${row.id}`)}
-      />
+      {keyword && filteredData.length === 0 ? (
+        <p>검색 결과가 없습니다.</p>
+      ) : (
+        <Table
+          columns={columns}
+          data={posts}
+          totalItems={total}
+          rowsPerPage={limit}
+          currentPage={page}
+          onPageChange={(p) => setSearchParams({ page: p, keyword })}
+          onRowClick={(row) => navigate(`/posts/${row.id}`)}
+        />
+      )}
     </div>
   );
 }
