@@ -21,7 +21,7 @@ function SideNav({ isOpen, toggle }) {
   const menu = [
     { icon: <MdHome />, label: 'Dashboard', path: '/' },
     { icon: <FaHospital />, label: '기관', path: '/organization' },
-    { icon: <BsArrowUpRight />, label: '사용량 통계', path: '/usageStats' },
+    { icon: <BsArrowUpRight />, label: '사용량 통계', path: '/usagestats' },
     {
       icon: <MdPeople />,
       label: 'Patients',

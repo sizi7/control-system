@@ -12,7 +12,10 @@ import OrganizationNew from '@/pages/Organization/OrganizationNew';
 import OrganizationDetail from '@/pages/Organization/OrganizationDetail';
 import OrganizationEdit from '@/pages/Organization/OrganizationEdit';
 import ContractNew from '@/pages/Organization/ContractNew';
-import UsageStats from '@/components/layout/UsageStats/UsageStats';
+import UsageStats from '@/pages/UsageStats/UsageStats';
+import MonthlyUsage from '@/pages/UsageStats/MonthlyUsage';
+// import DailyUsage from '@/pages/UsageStats/DailyUsage';
+import DailyDetailUsage from '@/pages/UsageStats/DailyDetailUsage';
 
 const AppRoutes = () => {
   return (
@@ -36,6 +39,9 @@ const AppRoutes = () => {
         />
 
         <Route path="/usagestats" element={<UsageStats />} />
+        <Route path="/usagestats/monthly" element={<MonthlyUsage />} />
+        {/* <Route path="/usagestats/monthly/:month" element={<DailyUsage />} /> */}
+        <Route path="/usagestats/monthly/:day" element={<DailyDetailUsage />} />
 
         <Route path="patients" element={<Patients />} />
       </Route>

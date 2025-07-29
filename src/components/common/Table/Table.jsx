@@ -1,3 +1,5 @@
+// Table.jsx
+
 import styles from './Table.module.css';
 import classNames from 'classnames';
 import { useState } from 'react';
@@ -60,7 +62,7 @@ export default function Table({
           {sortedData.map((row, rowIndex) => (
             <tr
               key={row.id || rowIndex}
-              onClick={() => onRowClick?.(row.key)}
+              onClick={() => onRowClick?.(row)}
               className={onRowClick ? styles.clickableRow : ''}
             >
               {columns.map((col) => (
@@ -82,19 +84,67 @@ export default function Table({
           ))}
         </tbody>
       </table>
+
       <div className={styles.pagination}>
-        {Array.from({ length: totalPages }, (_, i) => (
-          <button
-            key={i}
-            onClick={() => onPageChange(i + 1)}
-            className={classNames(
-              styles.pageButton,
-              currentPage === i + 1 && styles.activePage
+        {totalPages > 1 && (
+          <>
+            {/* 첫 페이지 이동 */}
+            {currentPage > 1 && (
+              <button
+                onClick={() => onPageChange(1)}
+                className={styles.pageButton}
+              >
+                «
+              </button>
             )}
-          >
-            {i + 1}
-          </button>
-        ))}
+
+            {/* 5페이지 이전으로 이동 */}
+            {currentPage > 5 && (
+              <button
+                onClick={() => onPageChange(Math.max(1, currentPage - 5))}
+                className={styles.pageButton}
+              >
+                ◀
+              </button>
+            )}
+
+            {/* 페이지 번호 목록 */}
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                onClick={() => onPageChange(page)}
+                className={classNames(
+                  styles.pageButton,
+                  currentPage === page && styles.activePage
+                )}
+              >
+                {page}
+              </button>
+            ))}
+
+            {/* 5페이지 이후로 이동 */}
+            {currentPage + 5 <= totalPages && (
+              <button
+                onClick={() =>
+                  onPageChange(Math.min(totalPages, currentPage + 5))
+                }
+                className={styles.pageButton}
+              >
+                ▶
+              </button>
+            )}
+
+            {/* 마지막 페이지 이동 */}
+            {currentPage < totalPages && (
+              <button
+                onClick={() => onPageChange(totalPages)}
+                className={styles.pageButton}
+              >
+                »
+              </button>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
