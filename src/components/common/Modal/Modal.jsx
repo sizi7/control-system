@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './Modal.module.css';
 
-export default function Modal({ isOpen, onClose, children }) {
+export default function Modal({ isOpen, onClose, children, width, height }) {
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === 'Escape') onClose();
@@ -17,13 +17,22 @@ export default function Modal({ isOpen, onClose, children }) {
 
   if (!isOpen) return null;
 
+  const modalStyle = {
+    width: width || '500px', // 기본값
+    height: height || 'auto',
+  };
+
   return ReactDOM.createPortal(
     <div className={styles.overlay} onClick={onClose}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+      <div
+        className={styles.modal}
+        onClick={(e) => e.stopPropagation()}
+        style={modalStyle}
+      >
         <button className={styles.closeBtn} onClick={onClose}>
           ×
         </button>
-        {children}
+        <div className={styles.modalChildren}>{children}</div>
       </div>
     </div>,
     document.body

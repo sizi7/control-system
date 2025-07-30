@@ -21,6 +21,7 @@ import SingleDateRangePicker from '@/components/common/DatePicker/SingleDateRang
 import MonthRangePickerSingle from '@/components/common/DatePicker/MonthRangePickerSingle';
 import YearRangePickerSingle from '@/components/common/DatePicker/YearPicker';
 import ExcelDownloadButton from '@/components/common/ExcelDownloadButton/ExcelDownloadButton';
+import KakaoSearchMap from '@/components/common/Map/KakaoSearchMap';
 
 const DefaultInput = () => {
   const [text, setText] = useState('');
@@ -163,7 +164,12 @@ const DefaultModal = () => {
     <>
       <Button onClick={() => setIsOpen(true)}>모달 열기</Button>
 
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <Modal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        width="600px"
+        height="400px"
+      >
         <h2>모달 제목</h2>
         <p>이건 모달 내용입니다.</p>
         <div className="buttonGroup">
@@ -194,7 +200,12 @@ const DefaultConfirmModal = () => {
     <>
       <Button onClick={() => setIsOpen(true)}>확인 모달 열기</Button>
 
-      <Modal isOpen={isOpen} onClose={handleCancel}>
+      <Modal
+        isOpen={isOpen}
+        onClose={handleCancel}
+        width="600px"
+        height="400px"
+      >
         <h2>정말 삭제하시겠습니까?</h2>
         <p>이 작업은 되돌릴 수 없습니다.</p>
 
@@ -564,6 +575,11 @@ const Template = () => {
         <div>
           <DefaultExcelDownload />
         </div>
+      </div>
+
+      <div>
+        <h2>장소 검색</h2>
+        <KakaoSearchMap />
       </div>
     </div>
   );
