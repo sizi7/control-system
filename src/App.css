@@ -1,0 +1,95 @@
+/* Modal */
+.buttonGroup {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+/* datepicker css */
+.datepickerInput {
+    height: 32px;
+    padding: 0 12px;
+    font-size: 15px;
+    border-radius: 1px;
+    border: 1px solid #BBBBBB;
+    width: 220px;
+    cursor: pointer;
+}
+
+.customCalendar {
+    font-family: 'Pretendard', sans-serif;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border: none;
+    overflow: hidden;
+}
+
+.react-datepicker__header {
+    background-color: #e8f0ff;
+    border-bottom: none;
+}
+
+.react-datepicker__month-text {
+    font-size: 14px;
+    padding: 8px 0;
+    margin: 4px auto;
+    border-radius: 6px;
+}
+
+.react-datepicker__month-text:hover {
+    background-color: #d2e4ff;
+    color: #145cc0;
+}
+
+.react-datepicker__month-text--selected {
+    background-color: #145cc0;
+    color: #fff;
+}
+
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range,
+.react-datepicker__month-text--selected,
+.react-datepicker__month-text--in-selecting-range,
+.react-datepicker__month-text--in-range,
+.react-datepicker__quarter-text--selected,
+.react-datepicker__quarter-text--in-selecting-range,
+.react-datepicker__quarter-text--in-range,
+.react-datepicker__year-text--selected,
+.react-datepicker__year-text--in-selecting-range,
+.react-datepicker__year-text--in-range {
+    background-color: #0066BB !important;
+}
+
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__month-text--keyboard-selected,
+.react-datepicker__quarter-text--keyboard-selected,
+.react-datepicker__year-text--keyboard-selected {
+    background-color: #0088FF !important;
+    color: #FFFFFF !important;
+}
+
+.react-datepicker__day:not([aria-disabled=true]):hover,
+.react-datepicker__month-text:not([aria-disabled=true]):hover,
+.react-datepicker__quarter-text:not([aria-disabled=true]):hover,
+.react-datepicker__year-text:not([aria-disabled=true]):hover {
+    background: rgba(0, 136, 255, 0.2) !important;
+    color: #0088FF !important
+}
+
+
+.react-datepicker__close-icon::after {
+    background: none !important;
+    color: #999 !important;
+    font-size: 1.2rem !important;
+}
+
+.react-datepicker__year .react-datepicker__year-text {
+    padding: 10px 0;
+}
+
+.react-datepicker__year-wrapper {
+    justify-content: center;
+}

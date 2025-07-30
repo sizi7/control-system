@@ -87,3 +87,7 @@ tbody tr:hover {
     font-size: 14px;
     user-select: none;
 }
+
+.clickableRow {
+    cursor: pointer;
+}

@@ -68,7 +68,7 @@ const UsageStats = () => {
         <div
           style={{
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent: 'end',
             gap: '8px',
           }}
         >
