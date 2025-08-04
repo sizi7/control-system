@@ -1,29 +1,27 @@
-import styles from './Input.module.css';
+import styles from './SearchInput.module.css';
 
-export default function Input({
-  label,
+export default function SearchInput({
   value,
   onChange,
-  placeholder = '',
+  placeholder = '검색어를 입력하세요',
   error = false,
   errorMessage = '',
-  icon = null,
   ...props
 }) {
   return (
     <div className={styles.inputWrapper}>
-      {label && <label className={styles.inputLabel}>{label}</label>}
-      <div className={`${styles.inputContainer} ${error ? 'inputError' : ''}`}>
-        {icon && <span className={styles.iconWrapper}>{icon}</span>}
+      <div className={`${styles.inputContainer} ${error ? styles.inputError : ''}`}>
         <input
-          className={styles.customInput}
+          type="text"
+          className={styles.searchInput}
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          {...props}
           autoComplete="off"
+          disabled={props.disabled}
+          {...props}
         />
-        {value && (
+        {value && !props.disabled && (
           <button
             type="button"
             className={styles.clearButton}

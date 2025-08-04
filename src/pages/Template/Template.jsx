@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './Template.module.css';
 import Input from '../../components/common/Input/Input';
+import SearchInput from '../../components/common/Input/SearchInput';
 import SelectBox from '../../components/common/SelectBox/SelectBox';
 import Radio from '../../components/common/Radio/Radio';
 import { ToastProvider, useToast } from '../../components/common/Toast/Toast';
@@ -22,6 +23,10 @@ import MonthRangePickerSingle from '@/components/common/DatePicker/MonthRangePic
 import YearRangePickerSingle from '@/components/common/DatePicker/YearPicker';
 import ExcelDownloadButton from '@/components/common/ExcelDownloadButton/ExcelDownloadButton';
 import KakaoSearchMap from '@/components/common/Map/KakaoSearchMap';
+import MUIDatePicker from '@/components/common/DatePicker/MUIDatePicker';
+import DateRangeInput from '@/components/common/DatePicker/DateRangeInput';
+import DateRangeField from '@/components/common/DatePicker/DateRangeField';
+import SingleInputDateRange from '@/components/common/DatePicker/SingleInputDateRange';
 
 const DefaultInput = () => {
   const [text, setText] = useState('');
@@ -38,6 +43,18 @@ const DefaultInput = () => {
       value={text}
       onChange={handleInputChange}
       placeholder="이름을 입력하세요"
+    />
+  );
+};
+
+const DefaultSearchInput = () => {
+  const [search, setSearch] = useState('');
+
+  return (
+    <SearchInput
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      placeholder="병원명을 입력하세요"
     />
   );
 };
@@ -320,6 +337,44 @@ const DefaultMonthRangePickerSingle = () => {
 const DefaultYearRangePickerSingle = () => {
   return <YearRangePickerSingle />;
 };
+const DefaultMuiDatePicker = () => {
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  return (
+    <div style={{ maxWidth: 300 }}>
+      <MUIDatePicker
+        value={selectedDate}
+        onChange={setSelectedDate}
+        placeholder="날짜를 선택하세요"
+        label="계약일"
+      />
+    </div>
+  );
+};
+
+const DefaultRangePicker = () => {
+  const [range, setRange] = useState([null, null]);
+
+  console.log('range', range);
+
+  return (
+    <div style={{ maxWidth: 300 }}>
+      <DateRangeInput value={range} onChange={setRange} />
+    </div>
+  );
+};
+
+const DefaultDateRangeField = () => {
+  const [range, setRange] = useState([null, null]);
+
+  return <DateRangeField value={range} onChange={setRange} />;
+};
+
+const DefaultSingleInputDateRange = () => {
+  const [range, setRange] = useState([null, null]);
+
+  return <SingleInputDateRange value={range} onChange={setRange} />;
+};
 
 const DefaultList = () => {
   const items = [
@@ -431,6 +486,7 @@ const Template = () => {
       <div>
         <h2>Input</h2>
         <DefaultInput />
+        <DefaultSearchInput />
       </div>
 
       <div>
@@ -552,6 +608,26 @@ const Template = () => {
       <div>
         <h2>YearRangePickerSingle</h2>
         <DefaultYearRangePickerSingle />
+      </div>
+
+      <div>
+        <h2>MUI datepicker</h2>
+        <DefaultMuiDatePicker />
+      </div>
+
+      <div>
+        <h2>Custom dateRangePicker</h2>
+        <DefaultRangePicker />
+      </div>
+
+      <div>
+        <h2>rangePicker</h2>
+        <DefaultDateRangeField />
+      </div>
+
+      <div>
+        <h2>SingleInputDateRange</h2>
+        <DefaultSingleInputDateRange />
       </div>
 
       <div>

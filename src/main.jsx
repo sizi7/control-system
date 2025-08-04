@@ -6,7 +6,7 @@ import './styles/font.css';
 import './styles/reset.css';
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter basename="/control-system">
+  <BrowserRouter basename="/smart-thync-tank">
     <App />
   </BrowserRouter>
 );

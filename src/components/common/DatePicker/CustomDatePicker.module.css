@@ -1,0 +1,33 @@
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: 8px 36px 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.icon img {
+  width: 18px;
+  height: 18px;
+  opacity: 0.6;
+}
+
+.icon:hover img {
+  opacity: 1;
+}

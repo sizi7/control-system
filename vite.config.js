@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   plugins: [react()],
-  base: '/control-system/',
+  base: '/smart-thync-tank/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
