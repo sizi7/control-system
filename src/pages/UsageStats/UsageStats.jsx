@@ -5,10 +5,16 @@ import Table from '@/components/common/Table/Table';
 import { useEffect, useState } from 'react';
 import Input from '@/components/common/Input/Input';
 import Button from '@/components/common/Button/Button';
+import api from '@/utils/api';
 
 const columns = [
-  { key: 'id', label: 'No.', width: '10%' },
-  { key: 'HospitalName', label: '병원명', width: '90%' },
+  { key: 'organizationCode', label: 'No.', width: '10%' },
+  { key: 'organizationName', label: '병원', width: '30%' },
+  { key: 'serviceTotalCount', label: '전체', width: '10%' },
+  { key: 'normalServiceCount', label: '일반 건수', width: '10%' },
+  { key: 'premiumServiceCount', label: '사용량 비례 건수', width: '10%' },
+  { key: 'ecgServiceCount', label: '심전계 검사 건수', width: '10%' },
+  { key: 'spo2ServiceCount', label: '산소포화도 검사 건수', width: '10%' },
 ];
 
 const MOCK_DATA = [
@@ -21,41 +27,41 @@ const UsageStats = () => {
 
   const [posts, setPosts] = useState([]);
   const [total, setTotal] = useState(0);
-  const [filteredData, setFilteredData] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const page = Number(searchParams.get('page') || 1);
-  const keyword = searchParams.get('keyword') || '';
-  const limit = 10;
+  // const keyword = searchParams.get('keyword') || '';
+  const [keyword, setKeyword] = useState('');
+  const limit = 20;
 
   useEffect(() => {
-    // API 미연결 상태: 목데이터 사용
-    const filtered = MOCK_DATA.filter(
-      (item) => item.HospitalName.includes(keyword)
-      //  || item.author.includes(keyword)
-    );
-    setFilteredData(filtered);
-    setPosts(filtered.slice((page - 1) * limit, page * limit));
-    setTotal(filtered.length);
-
-    // 실제 API 사용 시:
-    /*
-      axios.get(`/api/posts?page=${page}&limit=${limit}&keyword=${keyword}`)
-        .then((res) => {
-          setPosts(res.data.data);
-          setTotal(res.data.total);
-        });
-      */
+    api
+      .post(
+        `/API/Premium/SelectServiceUseInfoPage`,
+        {
+          searchText: keyword,
+          offset: page,
+          limit: limit,
+        }
+        // {
+        //   withCredentials: true,
+        // }
+      )
+      .then((res) => {
+        setPosts(res.data.serviceUseInfoList);
+        setTotal(res.data.totalCount);
+      });
   }, [page, keyword]);
+  console.log('posts', posts);
 
   const handleSearch = (e) => {
     e.preventDefault();
-    const input = e.target.keyword.value;
-    setSearchParams({ page: 1, keyword: input });
+    // const input = e.target.keyword.value;
+    setSearchParams({ page: 1 });
   };
 
-  const goToMonthlyUsage = () => {
-    navigate(`/usagestats/monthly`);
+  const goToMonthlyUsage = (organizationCode) => {
+    navigate(`/usagestats/monthly/${organizationCode}`);
   };
 
   return (
@@ -83,6 +89,7 @@ const UsageStats = () => {
                 name="keyword"
                 placeholder="검색어를 입력하세요"
                 defaultValue={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
               />
             </div>
             <Button type="submit">검색</Button>
@@ -90,7 +97,7 @@ const UsageStats = () => {
         </div>
       </form>
       <section>
-        {keyword && filteredData.length === 0 ? (
+        {keyword && posts.length === 0 ? (
           <p>검색 결과가 없습니다.</p>
         ) : (
           <Table
@@ -100,7 +107,7 @@ const UsageStats = () => {
             rowsPerPage={limit}
             currentPage={page}
             onPageChange={(p) => setSearchParams({ page: p, keyword })}
-            onRowClick={goToMonthlyUsage}
+            onRowClick={(row) => goToMonthlyUsage(row.organizationCode)}
           />
         )}
       </section>

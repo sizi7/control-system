@@ -1,4 +1,4 @@
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import Table from '@/components/common/Table/Table';
 import { useEffect, useState } from 'react';
 import PageTitle from '@/components/layout/PageTitle/PageTitle';
@@ -6,88 +6,68 @@ import Breadcrumbs from '@/components/common/Layout/Breadcrumbs/Breadcrumbs';
 import Button from '@/components/common/Button/Button';
 import Input from '@/components/common/Input/Input';
 import ExcelDownloadButton from '@/components/common/ExcelDownloadButton/ExcelDownloadButton';
+import api from '@/utils/api';
 
 const columns = [
-  // { key: 'id', label: '번호' },
-  { key: 'date', label: '날짜', align: 'left', width: '10%' },
+  { key: 'timeRange', label: '날짜', align: 'left', width: '20%' },
   { key: 'patientCode', label: '환자코드', align: 'center', width: '10%' },
-  { key: 'patientName', label: '이름', align: 'center', width: '10%' },
+  { key: 'name', label: '이름', align: 'center', width: '10%' },
   { key: 'ward', label: '병동', align: 'center', width: '10%' },
-  { key: 'room', label: '병실', align: 'center', width: '10%' },
-  { key: 'startTime', label: '시작시간', align: 'center', width: '15%' },
-  { key: 'endTime', label: '종료시간', align: 'center', width: '15%' },
-  { key: 'ecgSerial', label: '심전계', align: 'center', width: '10%' },
-  { key: 'spo2Serial', label: '산소포화도', align: 'center', width: '10%' },
-];
-
-const MOCK_DATA = [
+  { key: 'sickroom', label: '병실', align: 'center', width: '10%' },
   {
-    date: '2025-06-01',
-    patientCode: 'A0001',
-    patientName: '김환자',
-    ward: '1404',
-    room: '01',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090911',
-    spo2Serial: 'P090911',
+    key: 'ecgSerial',
+    label: '심전계',
+    align: 'center',
+    width: '10%',
+    render: (row) => (row.deviceType === '1' ? row.serialNumber : '-'),
   },
   {
-    date: '2025-06-01',
-    patientCode: 'A0002',
-    patientName: '이환자',
-    ward: '1404',
-    room: '02',
-    startTime: '2025-06-18 16:21:01',
-    endTime: '	2025-06-18 16:25:29',
-    ecgSerial: 'A090912',
-    spo2Serial: 'P090912',
+    key: 'spo2Serial',
+    label: '산소포화도',
+    align: 'center',
+    width: '10%',
+    render: (row) => (row.deviceType === '3' ? row.serialNumber : '-'),
   },
 ];
 
 const DailyDetailUsage = () => {
   const navigate = useNavigate();
-  // console.log(MOCK_DATA.length);
 
-  const { day } = useParams();
-  console.log('day', day);
+  // const { day } = useParams();
+  // console.log('day', day);
   const [posts, setPosts] = useState([]);
   const [total, setTotal] = useState(0);
-  const [filteredData, setFilteredData] = useState([]);
+  // const [filteredData, setFilteredData] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const page = Number(searchParams.get('page') || 1);
-  const keyword = searchParams.get('keyword') || '';
-  const limit = 10;
+  // const keyword = searchParams.get('keyword') || '';
+  const [keyword, setKeyword] = useState('');
+  const limit = 20;
 
   useEffect(() => {
-    // API 미연결 상태: 목데이터 사용
-    const filtered = MOCK_DATA.filter(
-      (item) =>
-        item.patientName.includes(keyword) || item.patientCode.includes(keyword)
-    );
-    setFilteredData(filtered);
-    setPosts(filtered.slice((page - 1) * limit, page * limit));
-    setTotal(filtered.length);
-
-    // 실제 API 사용 시:
-    /*
-    axios.get(`/api/posts?page=${page}&limit=${limit}&keyword=${keyword}`)
+    api
+      .post(`/API/Premium/SelectServiceUseDetailInfoListPage`, {
+        organizationCode: 'BELIEVE',
+        searchText: keyword,
+        offset: page,
+        limit: limit,
+      })
       .then((res) => {
-        setPosts(res.data.data);
-        setTotal(res.data.total);
+        // console.log('res', res.data.premiumMeasurementInfoList);
+        setPosts(res.data.premiumMeasurementInfoList);
+        setTotal(res.data.totalCount);
       });
-    */
   }, [page, keyword]);
 
   const handleSearch = (e) => {
     e.preventDefault();
-    const input = e.target.keyword.value;
-    setSearchParams({ page: 1, keyword: input });
+    // const input = e.target.keyword.value;
+    setSearchParams({ page: 1 });
   };
 
   const handleBack = () => {
-    navigate(-1);
+    navigate(`/usagestats/`);
   };
 
   return (
@@ -116,13 +96,14 @@ const DailyDetailUsage = () => {
                 name="keyword"
                 placeholder="검색어를 입력하세요"
                 defaultValue={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
               />
             </div>
             <Button type="submit">검색</Button>
           </div>
         </div>
       </form>
-      {keyword && filteredData.length === 0 ? (
+      {keyword && posts.length === 0 ? (
         <p>검색 결과가 없습니다.</p>
       ) : (
         <Table
@@ -131,11 +112,11 @@ const DailyDetailUsage = () => {
           totalItems={total}
           rowsPerPage={limit}
           currentPage={page}
-          onPageChange={(p) => setSearchParams({ page: p, keyword })}
+          onPageChange={(p) => setSearchParams({ page: p })}
         />
       )}
       <ExcelDownloadButton
-        data={MOCK_DATA}
+        data={posts}
         headers={columns}
         fileName="기관목록.xlsx"
       />

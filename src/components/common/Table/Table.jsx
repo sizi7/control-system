@@ -35,6 +35,24 @@ export default function Table({
 
   const totalPages = Math.ceil(totalItems / rowsPerPage);
 
+  // 페이징 번호 계산 함수
+  const getVisiblePages = () => {
+    const maxVisible = 5; // 보여줄 페이지 번호 개수
+    const half = Math.floor(maxVisible / 2);
+
+    let start = Math.max(1, currentPage - half);
+    let end = Math.min(totalPages, start + maxVisible - 1);
+
+    // 끝에서 부족한 만큼 앞으로 조정
+    if (end - start + 1 < maxVisible) {
+      start = Math.max(1, end - maxVisible + 1);
+    }
+
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  };
+
+  const visiblePages = getVisiblePages();
+
   return (
     <div className={styles.tableWrapper}>
       <table className={styles.table}>
@@ -89,27 +107,40 @@ export default function Table({
         {totalPages > 1 && (
           <>
             {/* 첫 페이지 이동 */}
-            {currentPage > 1 && (
-              <button
-                onClick={() => onPageChange(1)}
-                className={styles.pageButton}
-              >
-                «
-              </button>
+            <button
+              onClick={() => onPageChange(1)}
+              className={styles.pageButton}
+              disabled={currentPage === 1}
+            >
+              «
+            </button>
+
+            {/* 이전 페이지 */}
+            <button
+              onClick={() => onPageChange(currentPage - 1)}
+              className={styles.pageButton}
+              disabled={currentPage === 1}
+            >
+              ‹
+            </button>
+
+            {/* 시작 생략 표시 */}
+            {visiblePages[0] > 1 && (
+              <>
+                <button
+                  onClick={() => onPageChange(1)}
+                  className={styles.pageButton}
+                >
+                  1
+                </button>
+                {visiblePages[0] > 2 && (
+                  <span className={styles.ellipsis}>...</span>
+                )}
+              </>
             )}
 
-            {/* 5페이지 이전으로 이동 */}
-            {currentPage > 5 && (
-              <button
-                onClick={() => onPageChange(Math.max(1, currentPage - 5))}
-                className={styles.pageButton}
-              >
-                ◀
-              </button>
-            )}
-
-            {/* 페이지 번호 목록 */}
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            {/* 페이지 번호 목록 (제한된 개수만 표시) */}
+            {visiblePages.map((page) => (
               <button
                 key={page}
                 onClick={() => onPageChange(page)}
@@ -122,27 +153,38 @@ export default function Table({
               </button>
             ))}
 
-            {/* 5페이지 이후로 이동 */}
-            {currentPage + 5 <= totalPages && (
-              <button
-                onClick={() =>
-                  onPageChange(Math.min(totalPages, currentPage + 5))
-                }
-                className={styles.pageButton}
-              >
-                ▶
-              </button>
+            {/* 끝 생략 표시 */}
+            {visiblePages[visiblePages.length - 1] < totalPages && (
+              <>
+                {visiblePages[visiblePages.length - 1] < totalPages - 1 && (
+                  <span className={styles.ellipsis}>...</span>
+                )}
+                <button
+                  onClick={() => onPageChange(totalPages)}
+                  className={styles.pageButton}
+                >
+                  {totalPages}
+                </button>
+              </>
             )}
 
+            {/* 다음 페이지 */}
+            <button
+              onClick={() => onPageChange(currentPage + 1)}
+              className={styles.pageButton}
+              disabled={currentPage === totalPages}
+            >
+              ›
+            </button>
+
             {/* 마지막 페이지 이동 */}
-            {currentPage < totalPages && (
-              <button
-                onClick={() => onPageChange(totalPages)}
-                className={styles.pageButton}
-              >
-                »
-              </button>
-            )}
+            <button
+              onClick={() => onPageChange(totalPages)}
+              className={styles.pageButton}
+              disabled={currentPage === totalPages}
+            >
+              »
+            </button>
           </>
         )}
       </div>
