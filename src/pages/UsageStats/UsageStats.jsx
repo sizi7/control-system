@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import Input from '@/components/common/Input/Input';
 import Button from '@/components/common/Button/Button';
 import api from '@/utils/api';
+import useSearchStore from '@/stores/search';
 
 const columns = [
   { key: 'organizationCode', label: 'No.', width: '10%' },
@@ -29,10 +30,16 @@ const UsageStats = () => {
   const [total, setTotal] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const { searchTerm } = useSearchStore();
+
   const page = Number(searchParams.get('page') || 1);
   // const keyword = searchParams.get('keyword') || '';
   const [keyword, setKeyword] = useState('');
   const limit = 20;
+
+  useEffect(() => {
+    setKeyword(searchTerm);
+  }, [searchTerm]);
 
   useEffect(() => {
     api
